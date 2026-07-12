@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Excursion — Hollow Creek &amp; Northern Railway</title>
+    <meta
+      name="description"
+      content="Reserve your tickets for a steam excursion on the Hollow Creek & Northern Railway."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rye&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23600505'/><text x='50' y='66' font-size='46' text-anchor='middle' fill='%23f6efe2' font-family='Georgia'>HC</text></svg>"
+    />
+  </head>
+  <body class="product-page">
+    <div class="sheet">
+      <!-- ===== Back to the depot ===== -->
+      <a class="back-link" href="index.html">
+        <svg
+          viewBox="0 0 96 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <!-- arrow pointing home -->
+          <g
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+          >
+            <!-- shaft -->
+            <line x1="14" y1="12" x2="88" y2="12" />
+            <!-- arrowhead -->
+            <path d="M20 3 L4 12 L20 21 L15 12 Z" fill="currentColor" />
+          </g>
+        </svg>
+        Back to the Depot
+      </a>
+
+      <!-- ===== Miner's cart ===== -->
+      <button
+        class="cart"
+        id="cart"
+        type="button"
+        aria-label="Shopping cart, empty"
+      >
+        <svg
+          viewBox="0 0 64 54"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <!-- rails -->
+          <line
+            x1="2"
+            y1="51"
+            x2="62"
+            y2="51"
+            stroke="var(--ink)"
+            stroke-width="2"
+          />
+          <!-- cart body: tapered ore hopper -->
+          <path
+            d="M5 10 L59 10 L51 36 L13 36 Z"
+            fill="var(--gold)"
+            stroke="var(--ink)"
+            stroke-width="2.5"
+            stroke-linejoin="round"
+          />
+          <!-- plank seams -->
+          <line
+            x1="21"
+            y1="10"
+            x2="24.5"
+            y2="36"
+            stroke="var(--gold-deep)"
+            stroke-width="2"
+          />
+          <line
+            x1="32"
+            y1="10"
+            x2="32"
+            y2="36"
+            stroke="var(--gold-deep)"
+            stroke-width="2"
+          />
+          <line
+            x1="43"
+            y1="10"
+            x2="39.5"
+            y2="36"
+            stroke="var(--gold-deep)"
+            stroke-width="2"
+          />
+          <!-- top rim -->
+          <rect
+            x="3"
+            y="6"
+            width="58"
+            height="5"
+            rx="1.5"
+            fill="var(--gold-deep)"
+            stroke="var(--ink)"
+            stroke-width="2"
+          />
+          <!-- wheels -->
+          <circle cx="21" cy="44" r="6" fill="var(--ink)" />
+          <circle cx="21" cy="44" r="2" fill="var(--gold)" />
+          <circle cx="43" cy="44" r="6" fill="var(--ink)" />
+          <circle cx="43" cy="44" r="2" fill="var(--gold)" />
+        </svg>
+        <span class="cart-count" id="cart-count" hidden>0</span>
+      </button>
+
+      <main>
+        <!-- ===== Excursion handbill ===== -->
+        <section class="section product">
+          <div class="ticket-head product-head">
+            <span class="ticket-no" id="product-no"></span>
+            <!-- <span class="ticket-line">OZARK RY</span> -->
+          </div>
+          <p class="eyebrow">This season's excursion</p>
+          <h1 class="product-title" id="product-title"></h1>
+          <p class="section-lede" id="product-lede"></p>
+
+          <div class="product-meta">
+            <p id="product-schedule"></p>
+            <p id="product-duration"></p>
+          </div>
+
+          <!-- ===== Fares ===== -->
+          <form class="fare-form" id="fare-form">
+            <fieldset class="departure-set">
+              <legend class="product-subhead">Departure Time</legend>
+              <div class="departure-times" id="departure-times"></div>
+            </fieldset>
+            <h2 class="product-subhead">Fares</h2>
+            <div class="fare-rows">
+              <div class="fare-row">
+                <label for="adult-qty">
+                  <strong>Adult Tickets</strong>
+                  <span class="fare-price" id="adult-price"></span>
+                </label>
+                <div class="qty-stepper">
+                  <button
+                    type="button"
+                    class="qty-btn"
+                    data-target="adult-qty"
+                    data-step="-1"
+                    aria-label="One fewer adult ticket"
+                  >
+                    &minus;
+                  </button>
+                  <input
+                    type="number"
+                    id="adult-qty"
+                    name="adult-qty"
+                    inputmode="numeric"
+                    min="0"
+                    max="20"
+                    value="0"
+                  />
+                  <button
+                    type="button"
+                    class="qty-btn"
+                    data-target="adult-qty"
+                    data-step="1"
+                    aria-label="One more adult ticket"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="fare-row">
+                <label for="child-qty">
+                  <strong>Child Tickets</strong>
+                  <span class="fare-price" id="child-price"></span>
+                </label>
+                <div class="qty-stepper">
+                  <button
+                    type="button"
+                    class="qty-btn"
+                    data-target="child-qty"
+                    data-step="-1"
+                    aria-label="One fewer child ticket"
+                  >
+                    &minus;
+                  </button>
+                  <input
+                    type="number"
+                    id="child-qty"
+                    name="child-qty"
+                    inputmode="numeric"
+                    min="0"
+                    max="20"
+                    value="0"
+                  />
+                  <button
+                    type="button"
+                    class="qty-btn"
+                    data-target="child-qty"
+                    data-step="1"
+                    aria-label="One more child ticket"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="fare-row fare-total-row">
+                <span><strong>Fare Total</strong></span>
+                <span class="fare-total" id="fare-total">$0</span>
+              </div>
+            </div>
+            <p class="fare-fineprint">
+              Children under 2 ride free on a lap. Every trip runs rain or
+              shine.
+            </p>
+            <button class="btn" type="submit">Add to Cart</button>
+            <p class="fare-notice" id="fare-notice" role="status"></p>
+          </form>
+
+          <div class="product-expect">
+            <h2 class="product-subhead">What to Expect</h2>
+            <div class="story-text" id="product-expect"></div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ===== Footer colophon ===== -->
+      <footer class="footer">
+        <div class="footer-rail" aria-hidden="true"></div>
+        <p class="footer-brand">Hollow Creek &amp; Northern Railway</p>
+        <p>
+          A 501(c)(3) volunteer heritage railway ✦ Southeast Missouri ✦
+          Established 1926
+        </p>
+        <p class="footer-copy">
+          © 2026 Hollow Creek &amp; Northern Railway · Smiles by the mile since
+          1926 · A fictional demonstration website
+        </p>
+      </footer>
+    </div>
+
+    <script src="cart.js"></script>
+    <script src="product.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1131 @@
+/* =====================================================
+   Hollow Creek & Northern Railway — one-page site
+   Styled after a 1920s printed railroad handbill:
+   aged paper, letterpress ink, ruled borders.
+   No animations, no cards, no shadows.
+   ===================================================== */
+
+:root {
+  --ink: #2b1d12;
+  --ink-soft: #57452f;
+  --maroon: #5e1010;
+  --paper: #f1e6cc;
+  --paper-deep: #e6d7b4;
+  --surround: #241a10;
+  --rule: #6b5738;
+  --gold: #cf9f2e;
+  --gold-deep: #9c7218;
+  --serif: "Old Standard TT", Georgia, "Times New Roman", serif;
+  --display: "Rye", "Old Standard TT", Georgia, serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--surround);
+  padding: clamp(0.6rem, 2.5vw, 2.2rem);
+}
+
+/* Subtle aged-paper grain over everything */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--maroon);
+}
+a:hover {
+  color: var(--ink);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- The printed sheet ---------- */
+.sheet {
+  max-width: 1060px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 3px double var(--ink);
+  outline: 1px solid var(--paper-deep);
+  outline-offset: -9px;
+  padding: clamp(1.2rem, 4vw, 3rem) clamp(1rem, 5vw, 4rem);
+}
+
+/* ---------- Navigation rule ---------- */
+.navline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.35rem 1rem;
+  border-top: 3px double var(--ink);
+  border-bottom: 3px double var(--ink);
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.navline a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.navline a:hover {
+  color: var(--maroon);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.navline span {
+  color: var(--rule);
+  font-size: 0.7rem;
+}
+/* Menu button: hidden on desktop, shown on mobile */
+.nav-toggle {
+  display: none;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: none;
+  border: none;
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+}
+/* On desktop the wrapper dissolves so links flow in the navline flex row */
+.nav-links {
+  display: contents;
+}
+
+/* ---------- Miner's cart (shopping cart) ----------
+   Floats at the bottom-right of the viewport, chat-widget style,
+   above the paper-grain overlay (z-index 999). */
+.cart {
+  position: fixed;
+  right: clamp(2rem, 5vw, 1.6rem);
+  bottom: clamp(0.9rem, 3vw, 1.6rem);
+  z-index: 1000;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 3px double var(--ink);
+  outline: 1px solid var(--paper-deep);
+  outline-offset: -7px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  padding: 0;
+  cursor: pointer;
+}
+.cart svg {
+  width: 36px;
+  height: auto;
+}
+.cart:hover {
+  border-color: var(--maroon);
+}
+.cart:hover svg path,
+.cart:hover svg rect {
+  stroke: var(--maroon);
+}
+.cart-count {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 0.72rem;
+  line-height: 1;
+  color: var(--paper);
+  background: var(--maroon);
+  border: 1px solid var(--paper);
+}
+.cart-count[hidden] {
+  display: none;
+}
+
+/* ---------- Buttons (letterpress style) ---------- */
+button.button,
+.btn {
+  display: inline-block;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.8rem 1.7rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: inset 0 0 0 2px var(--paper);
+}
+.btn:hover {
+  background: var(--maroon);
+  border-color: var(--maroon);
+  color: var(--paper);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 2px var(--ink);
+  padding: 0.8rem 1.7rem;
+  border: 1px solid transparent;
+  outline: 1px solid var(--ink);
+  outline-offset: 3px;
+}
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn-row {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2.2rem;
+}
+.book-now {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* ---------- Hero handbill ---------- */
+.hero {
+  text-align: center;
+  padding: clamp(2.2rem, 5vw, 3.6rem) 0 1rem;
+}
+.hero-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 7vw, 4.8rem);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--maroon);
+}
+.hero-since {
+  font-style: italic;
+  font-size: 1.25rem;
+  margin: 0.3rem 0 2rem;
+}
+/* ---------- Framed photographs ---------- */
+.photo-frame {
+  margin: 0 auto;
+  max-width: 760px;
+}
+.photo-frame img {
+  width: 100%;
+  height: auto;
+  border: 3px double var(--ink);
+  outline: 1px solid var(--paper-deep);
+  outline-offset: -8px;
+  /* tone the photo toward the aged-paper palette */
+  filter: sepia(0.28) saturate(0.85) contrast(1.02);
+}
+.photo-frame figcaption {
+  margin-top: 0.7rem;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+.story-photo {
+  margin-top: 2.4rem;
+}
+.hero-sub {
+  max-width: 590px;
+  margin: 2rem auto 0;
+  font-size: 1.1rem;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding: clamp(2.6rem, 1vw, 4.5rem) 0;
+  text-align: center;
+}
+.product-page .section {
+  padding: clamp(0.6rem, 1vw, 3.2rem) 0;
+}
+.section-ruled {
+  border-top: 3px double var(--ink);
+}
+.section + .section:not(.section-ruled) {
+  border-top: 1px solid var(--rule);
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--maroon);
+  margin-bottom: 0.7rem;
+  text-align: center;
+}
+.section-lede {
+  max-width: 620px;
+  margin: 20px auto 2.4rem;
+  font-style: italic;
+}
+
+/* ---------- Story ---------- */
+.story-text {
+  max-width: 700px;
+  margin: 20px auto;
+  text-align: left;
+}
+.story-text p + p {
+  margin-top: 1.2rem;
+}
+.dropcap::first-letter {
+  font-size: 4.1em;
+  font-weight: 700;
+  float: left;
+  line-height: 0.8;
+  padding: 0.08em 0.12em 0 0;
+  color: var(--maroon);
+}
+
+/* ---------- Tickets ---------- */
+.tickets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+  text-align: left;
+}
+.ticket {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--paper-deep);
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--ink);
+  outline-offset: -5px;
+  padding: 1.4rem 1.6rem;
+  cursor: pointer;
+}
+.ticket:focus-visible {
+  outline-offset: 2px;
+  outline-width: 2px;
+}
+.ticket-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+.ticket h3 {
+  font-size: 1.45rem;
+  color: var(--maroon);
+  margin-bottom: 0.5rem;
+}
+.ticket p {
+  font-size: 0.98rem;
+}
+.ticket-meta {
+  margin-top: 0.9rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.78rem !important;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.6rem;
+}
+
+/* punched hole */
+.ticket.punched::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: 66px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+/* ---------- Sponsor a Spike ---------- */
+.spike-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: clamp(2rem, 6vw, 4.5rem);
+  align-items: center;
+  text-align: left;
+}
+.spike {
+  margin: 20px auto;
+}
+
+/* ---------- Volunteers ---------- */
+.roles {
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 2.1;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Visit ---------- */
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  text-align: left;
+  border-top: 1px solid var(--rule);
+  padding-top: 2rem;
+}
+.visit-col {
+  padding: 0 2.2rem;
+}
+.visit-col:first-child {
+  border-right: 1px solid var(--rule);
+  padding-left: 0.5rem;
+}
+.visit-col h3 {
+  font-size: 1.6rem;
+  color: var(--maroon);
+  margin-bottom: 0.7rem;
+}
+.visit-col address {
+  font-style: normal;
+  margin-bottom: 0.8rem;
+}
+.visit-note {
+  margin-top: 0.9rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+.visit-list {
+  list-style: none;
+}
+.visit-list li {
+  padding: 0.45rem 0 0.45rem 1.6rem;
+  position: relative;
+  border-bottom: 1px dotted var(--rule);
+}
+.visit-list li:last-child {
+  border-bottom: none;
+}
+.visit-list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--ink-soft);
+}
+
+/* ---------- Footer colophon ---------- */
+.footer {
+  text-align: center;
+  font-size: 0.95rem;
+  padding-bottom: 0.6rem;
+}
+.footer p {
+  margin-top: 0.2rem;
+}
+.footer-brand {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin-top: 1.4rem !important;
+}
+
+/* railroad-track divider */
+.footer-rail {
+  height: 18px;
+  margin-top: 20px;
+  margin-bottom: 1rem;
+  background:
+    repeating-linear-gradient(90deg, var(--rule) 0 10px, transparent 10px 34px)
+      center / 100% 18px no-repeat,
+    linear-gradient(
+      transparent 6px,
+      var(--ink) 6px 8px,
+      transparent 8px 10px,
+      var(--ink) 10px 12px,
+      transparent 12px
+    );
+  opacity: 0.5;
+}
+.footer-copy {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  margin-top: 1rem !important;
+}
+
+/* ---------- Product page (excursion handbill) ---------- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 0.4rem 0;
+}
+.back-link svg {
+  width: 40px;
+  height: auto;
+  flex-shrink: 0;
+}
+.back-link:hover {
+  color: var(--maroon);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.product {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.product-head {
+  max-width: 700px;
+  margin: 0 auto 1.6rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.6rem;
+}
+.product-title {
+  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--maroon);
+}
+.product-meta {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.7rem 0;
+  margin-bottom: 2.4rem;
+}
+.product-subhead {
+  font-size: 1.35rem;
+  color: var(--maroon);
+  margin-bottom: 1rem;
+}
+.product-expect .story-text {
+  margin-top: 0;
+}
+.product-expect .story-text p + p {
+  margin-top: 1.2rem;
+}
+
+/* ---------- Fare form ---------- */
+.departure-set {
+  border: 0;
+  margin: 0 0 2.4rem;
+  padding: 0;
+}
+.departure-set legend {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.departure-times {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+}
+.departure-time input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.departure-time span {
+  display: inline-block;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  padding: 0.6rem 1.3rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--paper-deep);
+  outline-offset: -4px;
+  cursor: pointer;
+}
+.departure-time span:hover {
+  background: var(--paper-deep);
+}
+.departure-time input:checked + span {
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: inset 0 0 0 2px var(--paper);
+  outline: none;
+}
+.departure-time input:focus-visible + span {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}
+.fare-rows {
+  max-width: 480px;
+  margin: 0 auto 1.2rem;
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--ink);
+  outline-offset: -5px;
+  background: var(--paper-deep);
+  padding: 0.4rem 1.4rem;
+  text-align: left;
+}
+.fare-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 0;
+}
+.fare-row + .fare-row {
+  border-top: 1px dotted var(--rule);
+}
+.fare-row label {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.fare-price {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.fare-row input[type="number"] {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: center;
+  width: 3.4rem;
+  padding: 0.45rem 0.2rem;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--paper-deep);
+  outline-offset: -4px;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.fare-row input[type="number"]::-webkit-outer-spin-button,
+.fare-row input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.fare-row input[type="number"]:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}
+.qty-stepper {
+  display: flex;
+  align-items: stretch;
+}
+.qty-btn {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+  width: 2.2rem;
+  color: var(--ink);
+  background: var(--paper-deep);
+  border: 1px solid var(--ink);
+  cursor: pointer;
+}
+.qty-btn:first-child {
+  margin-right: -1px;
+}
+.qty-btn:last-child {
+  margin-left: -1px;
+}
+.qty-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.qty-btn:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+  position: relative;
+}
+.fare-total-row {
+  border-top: 3px double var(--ink) !important;
+}
+.fare-total {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--maroon);
+}
+.fare-fineprint {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.6rem;
+}
+.fare-notice {
+  min-height: 1.65em;
+  margin-top: 1.1rem;
+  font-style: italic;
+  color: var(--maroon);
+  margin-bottom: 20px;
+}
+
+/* ---------- Sponsor a Spike options ---------- */
+.donation-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: left;
+}
+.donation-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.donation-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: 100%;
+  padding: 1.2rem 1.3rem;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--paper-deep);
+  outline-offset: -5px;
+  cursor: pointer;
+}
+.donation-card:hover {
+  background: var(--paper-deep);
+}
+.donation-option input:checked + .donation-card {
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: inset 0 0 0 2px var(--paper);
+  outline: none;
+}
+.donation-option input:checked + .donation-card .donation-price {
+  color: var(--gold);
+}
+.donation-option input:focus-visible + .donation-card {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}
+.donation-price {
+  font-family: var(--serif);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--maroon);
+  line-height: 1;
+}
+.donation-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.donation-desc {
+  font-size: 0.92rem;
+  font-style: italic;
+}
+
+/* ---------- Cart page (the way-bill) ---------- */
+.cart-lines {
+  max-width: 560px;
+  margin: 0 auto 1.6rem;
+  text-align: left;
+}
+.cart-line {
+  background: var(--paper-deep);
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--ink);
+  outline-offset: -5px;
+  padding: 1.1rem 1.4rem 1rem;
+}
+.cart-line + .cart-line {
+  margin-top: 1.2rem;
+}
+.cart-line-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+.cart-line-title {
+  font-size: 1.25rem;
+  color: var(--maroon);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.cart-remove {
+  font-family: var(--serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--maroon);
+  background: none;
+  border: none;
+  padding: 0.2rem 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  flex-shrink: 0;
+}
+.cart-remove:hover {
+  color: var(--ink);
+}
+.cart-remove:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}
+.cart-line-meta {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.55rem;
+  margin-bottom: 0.3rem;
+}
+.cart-fare {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.65rem 0;
+}
+.cart-fare + .cart-fare {
+  border-top: 1px dotted var(--rule);
+}
+.cart-fare-label {
+  font-size: 0.98rem;
+}
+.cart-qty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.6rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  background: var(--paper);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.cart-line-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  border-top: 3px double var(--ink);
+  padding-top: 0.6rem;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.cart-line-total {
+  font-style: normal;
+  font-size: 1.15rem;
+  color: var(--maroon);
+}
+.cart-summary {
+  max-width: 560px;
+  margin: 0 auto 1.4rem;
+  text-align: left;
+}
+.cart-total-row {
+  border-top: 3px double var(--ink);
+  border-bottom: 3px double var(--ink);
+  padding: 0.9rem 0.2rem;
+}
+.cart-empty-actions {
+  margin-top: 1.6rem;
+}
+
+/* ---------- Checkout page (the ticket window) ---------- */
+.checkout-summary {
+  max-width: 560px;
+  margin-bottom: 2.4rem;
+}
+.checkout-form {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: left;
+}
+.checkout-set {
+  border: 3px double var(--ink);
+  padding: 0.6rem 1.4rem 1.4rem;
+  margin: 0 0 1.8rem;
+}
+.checkout-set legend {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--maroon);
+  padding: 0 0.6rem;
+}
+.checkout-set-note {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-top: 0.6rem;
+}
+.form-field {
+  margin-top: 1rem;
+}
+.form-field label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.form-field input {
+  width: 100%;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+  padding: 0.55rem 0.8rem;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--paper-deep);
+  outline-offset: -4px;
+}
+.form-field input:focus-visible {
+  outline: 2px solid var(--maroon);
+  outline-offset: 2px;
+}
+.form-field input::placeholder {
+  color: var(--ink-soft);
+  font-style: italic;
+  opacity: 0.7;
+}
+.form-field input[aria-invalid="true"] {
+  border-color: var(--maroon);
+  outline-color: var(--maroon);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 0 1rem;
+}
+.form-row-pair {
+  grid-template-columns: 1fr 1fr;
+}
+.field-error {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--maroon);
+  margin-top: 0.25rem;
+}
+.fake-notice {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--maroon);
+  background: var(--paper-deep);
+  border: 1px dashed var(--maroon);
+}
+.checkout-form .btn {
+  display: block;
+  width: 100%;
+}
+.order-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.order-no {
+  display: inline-block;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--maroon);
+  background: var(--paper-deep);
+  border: 3px double var(--ink);
+  padding: 0.5rem 1.6rem;
+  margin: 0.5rem 0 1.2rem;
+}
+#done-ties {
+  margin-top: 1rem;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 760px) {
+  .nav-toggle {
+    display: block;
+    margin: 0 auto;
+  }
+  .nav-links {
+    display: none;
+  }
+  .navline.open .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    margin-top: 0.65rem;
+    border-top: 1px solid var(--rule);
+  }
+  .navline.open .nav-links a {
+    width: 100%;
+    text-align: center;
+    padding: 0.7rem 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .navline.open .nav-links a:last-child {
+    border-bottom: none;
+  }
+  .nav-links span {
+    display: none;
+  }
+  .tickets,
+  .spike-grid,
+  .visit-grid,
+  .donation-options {
+    grid-template-columns: 1fr;
+  }
+  .spike-copy {
+    display: flex;
+    flex-direction: column;
+  }
+  /* Time table: stack each run as a printed fare listing — no side-scroll */
+  .table-scroll {
+    overflow-x: visible;
+  }
+  .timetable,
+  .timetable tbody,
+  .timetable tr,
+  .timetable td {
+    display: block;
+  }
+  .timetable {
+    min-width: 0;
+    border: none;
+  }
+  .timetable thead {
+    display: none;
+  }
+  .timetable tr {
+    border: 3px double var(--ink);
+  }
+  .timetable tr + tr {
+    margin-top: 1.1rem;
+  }
+  .timetable tbody tr:nth-child(even) {
+    background: none;
+  }
+  .timetable td {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.55rem 1rem;
+    border: none;
+    border-top: 1px dotted var(--rule);
+    text-align: right;
+  }
+  .timetable td::before {
+    content: attr(data-label);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: left;
+  }
+  .timetable td:first-child {
+    display: block;
+    padding: 0.7rem 1rem;
+    border-top: none;
+    border-bottom: 3px double var(--ink);
+    background: var(--paper-deep);
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+  .timetable td:first-child::before {
+    content: none;
+  }
+  .figures {
+    grid-template-columns: 1fr 1fr;
+  }
+  .figure:nth-child(3) {
+    border-left: none;
+  }
+  .figure:nth-child(n + 3) {
+    border-top: 1px solid var(--rule);
+  }
+  .spike-art {
+    max-width: 230px;
+    margin: 0 auto;
+  }
+  .visit-col {
+    padding: 0;
+  }
+  .visit-col:first-child {
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .form-row-pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}

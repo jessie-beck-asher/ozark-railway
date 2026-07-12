@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Hollow Creek &amp; Northern Railway — Steam Excursions in Southeast
+      Missouri
+    </title>
+    <meta
+      name="description"
+      content="Ride a real 100-year-old steam train through the timber country of Southeast Missouri. Family excursions every weekend, run entirely by volunteers since 1926."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rye&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23600505'/><text x='50' y='66' font-size='46' text-anchor='middle' fill='%23f6efe2' font-family='Georgia'>HC</text></svg>"
+    />
+  </head>
+  <body>
+    <div class="sheet">
+      <!-- ===== Navigation rule ===== -->
+      <nav class="navline" aria-label="Main">
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          ✦ Menu ✦
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="#story">Our Story</a><span aria-hidden="true">✦</span>
+          <a href="#excursions">Excursions</a><span aria-hidden="true">✦</span>
+          <a href="#spike">Sponsor a Spike</a><span aria-hidden="true">✦</span>
+          <a href="#volunteer">Volunteer</a><span aria-hidden="true">✦</span>
+          <a href="#visit">Visit the Depot</a>
+        </div>
+      </nav>
+      <button
+        class="cart"
+        id="cart"
+        type="button"
+        aria-label="Shopping cart, empty"
+      >
+        <svg
+          viewBox="0 0 64 54"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <!-- rails -->
+          <line
+            x1="2"
+            y1="51"
+            x2="62"
+            y2="51"
+            stroke="var(--ink)"
+            stroke-width="2"
+          />
+          <!-- cart body: tapered ore hopper -->
+          <path
+            d="M5 10 L59 10 L51 36 L13 36 Z"
+            fill="var(--gold)"
+            stroke="var(--ink)"
+            stroke-width="2.5"
+            stroke-linejoin="round"
+          />
+          <!-- plank seams -->
+          <line
+            x1="21"
+            y1="10"
+            x2="24.5"
+            y2="36"
+            stroke="var(--gold-deep)"
+            stroke-width="2"
+          />
+          <line
+            x1="32"
+            y1="10"
+            x2="32"
+            y2="36"
+            stroke="var(--gold-deep)"
+            stroke-width="2"
+          />
+          <line
+            x1="43"
+            y1="10"
+            x2="39.5"
+            y2="36"
+            stroke="var(--gold-deep)"
+            stroke-width="2"
+          />
+          <!-- top rim -->
+          <rect
+            x="3"
+            y="6"
+            width="58"
+            height="5"
+            rx="1.5"
+            fill="var(--gold-deep)"
+            stroke="var(--ink)"
+            stroke-width="2"
+          />
+          <!-- wheels -->
+          <circle cx="21" cy="44" r="6" fill="var(--ink)" />
+          <circle cx="21" cy="44" r="2" fill="var(--gold)" />
+          <circle cx="43" cy="44" r="6" fill="var(--ink)" />
+          <circle cx="43" cy="44" r="2" fill="var(--gold)" />
+        </svg>
+        <span class="cart-count" id="cart-count" hidden>0</span>
+      </button>
+
+      <main id="top">
+        <!-- ===== Hero handbill ===== -->
+        <section class="hero">
+          <!-- <p class="hero-kicker">A real steam train — a real adventure</p> -->
+          <h2 class="hero-title">Ozark Railway</h2>
+          <p class="hero-since">— boarding since 1926 —</p>
+
+          <!-- Hero photograph -->
+          <figure class="photo-frame hero-photo">
+            <img
+              src="images/steam-train-departing.jpg"
+              alt="Old No. 350 departing under a full head of steam, black smoke billowing from her stack as she leads the excursion train past the meadow"
+              width="1800"
+              height="1200"
+            />
+            <!-- <figcaption>
+              Old No. 350 works up a full head of steam on the morning run — in
+              steam since 1926.
+            </figcaption> -->
+          </figure>
+          <div class="btn-row">
+            <a class="btn" href="#excursions">Reserve Your Tickets</a>
+            <a class="btn btn-outline" href="#excursions">Become a Volunteer</a>
+          </div>
+
+          <p class="hero-sub">
+            The best family adventures — Bandits, treasure maps, and firefly
+            evenings await down the line.
+          </p>
+        </section>
+
+        <!-- ===== Our Story ===== -->
+        <section class="section" id="story">
+          <p class="eyebrow">Welcome to the railway</p>
+          <h2>One Hundred Years Down the Same Seven Miles</h2>
+          <!-- <div class="ornament" aria-hidden="true">❦</div> -->
+
+          <div class="story-text">
+            <p class="dropcap">
+              The Ozark Railway is a volunteer-run excursion railway in the
+              timber country of Southeast Missouri. Old No.&nbsp;9 rolled out of
+              the works in 1926, hauled Ozark timber and mail until the highways
+              came, and has carried families making memories ever since.
+            </p>
+            <p>
+              It's not an ordinary train. One Saturday the Dusty Gulch Gang
+              "robs" the 11 o'clock; the next, the conductor hands out treasure
+              maps. The railway is a 501(c)(3) nonprofit run entirely by
+              volunteers, and every ticket keeps Old No.&nbsp;9 in steam for the
+              next hundred years.
+            </p>
+          </div>
+
+          <figure class="photo-frame story-photo">
+            <img
+              src="images/locomotives-at-depot.jpg"
+              alt="Two black steam locomotives simmering side by side outside the brick engine house while a crowd of visitors looks on"
+              width="1800"
+              height="1200"
+              loading="lazy"
+            />
+            <figcaption>
+              Open house at the engine shed — the whole town turns out when the
+              locomotives are in steam.
+            </figcaption>
+          </figure>
+
+          <!-- <div class="figures" role="list">
+            <div class="figure" role="listitem">
+              <strong>100</strong><span>Years in Steam</span>
+            </div>
+            <div class="figure" role="listitem">
+              <strong>7</strong><span>Miles of Track</span>
+            </div>
+            <div class="figure" role="listitem">
+              <strong>86</strong><span>Volunteers</span>
+            </div>
+            <div class="figure" role="listitem">
+              <strong>12,000</strong><span>Smiles per Season</span>
+            </div>
+          </div> -->
+        </section>
+
+        <!-- ===== Excursions ===== -->
+        <section class="section section-ruled" id="excursions">
+          <p class="eyebrow">Choose your adventure</p>
+          <h2>This Season's Excursions</h2>
+          <!-- <div class="ornament" aria-hidden="true">❦</div> -->
+          <p class="section-lede">
+            Every ride lasts about 90 minutes, rain or shine. Click a ticket to
+            punch it.
+          </p>
+
+          <div class="tickets">
+            <article class="ticket" tabindex="0">
+              <div class="ticket-head">
+                <span class="ticket-no">№ 01</span
+                ><span class="ticket-line">OZARK RY</span>
+              </div>
+              <h3>The Dusty Gulch Hold-Up</h3>
+              <p>
+                The valley's most polite outlaws board at the trestle to raid
+                the cookie tin. Deputies (ages 3 and up) sworn in before
+                departure.
+              </p>
+
+              <p class="ticket-meta">
+                May - September
+                <br />
+                Saturdays, 11:00 &amp; 2:00
+              </p>
+              <p>Adults $18 | Children $12</p>
+              <a class="btn book-now" href="product.html?excursion=dusty-gulch"
+                >Book Now!</a
+              >
+            </article>
+
+            <article class="ticket" tabindex="0">
+              <div class="ticket-head">
+                <span class="ticket-no">№ 02</span
+                ><span class="ticket-line">OZARK RY</span>
+              </div>
+              <h3>The Lost Spike Treasure Run</h3>
+              <p>
+                Legend says a gold spike is hidden along the line. Solve the
+                map's riddles before milepost 7 and claim your prize.
+              </p>
+              <p class="ticket-meta">
+                June - October
+                <br />
+                First Sundays, 1:00
+              </p>
+              <p>Adults $20 | Children $14</p>
+              <a class="btn book-now" href="product.html?excursion=lost-spike"
+                >Book Now!</a
+              >
+            </article>
+
+            <article class="ticket" tabindex="0">
+              <div class="ticket-head">
+                <span class="ticket-no">№ 03</span
+                ><span class="ticket-line">OZARK RY</span>
+              </div>
+              <h3>The Firefly Flyer</h3>
+              <p>
+                An evening run to Miller's Bend, where the meadow glitters with
+                fireflies. Lanterns, lemonade, and stories from the crew.
+              </p>
+              <p class="ticket-meta">
+                June - August
+                <br />
+                Friday evenings, 7:30
+              </p>
+              <p>Adults $16 | Children $10</p>
+              <a
+                class="btn book-now"
+                href="product.html?excursion=firefly-flyer"
+                >Book Now!</a
+              >
+            </article>
+
+            <article class="ticket" tabindex="0">
+              <div class="ticket-head">
+                <span class="ticket-no">№ 04</span
+                ><span class="ticket-line">OZARK RY</span>
+              </div>
+              <h3>The Centennial Steam Special</h3>
+              <p>
+                Old No. 9 turns one hundred! Brass band on the platform, cake in
+                every coach, and a whistle salute at the trestle.
+              </p>
+              <p class="ticket-meta">
+                July 4 weekend <br />
+                9:00, 1:00, 4:00
+              </p>
+              <p>Adults $24 | Children $16</p>
+              <a class="btn book-now" href="product.html?excursion=centennial"
+                >Book Now!</a
+              >
+            </article>
+          </div>
+        </section>
+
+        <!-- ===== Time table ===== -->
+        <!-- <section class="section" id="schedule">
+          <p class="eyebrow">Effective May 2, 1926 — er, 2026</p>
+          <h2>Time Table № 100</h2>
+          <div class="ornament" aria-hidden="true">❦</div>
+          <p class="section-lede">
+            Departures &amp; fares, Hollow Creek Depot. Read down.
+          </p>
+
+          <div class="table-scroll">
+            <table class="timetable">
+              <thead>
+                <tr>
+                  <th>Excursion</th>
+                  <th>Days</th>
+                  <th>Departs</th>
+                  <th>Adults</th>
+                  <th>Children (2–12)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Excursion">Dusty Gulch Hold-Up</td>
+                  <td data-label="Days">Saturdays</td>
+                  <td data-label="Departs">11:00 am &amp; 2:00 pm</td>
+                  <td data-label="Adults">$18</td>
+                  <td data-label="Children (2–12)">$12</td>
+                </tr>
+                <tr>
+                  <td data-label="Excursion">Lost Spike Treasure Run</td>
+                  <td data-label="Days">First Sundays</td>
+                  <td data-label="Departs">1:00 pm</td>
+                  <td data-label="Adults">$20</td>
+                  <td data-label="Children (2–12)">$14</td>
+                </tr>
+                <tr>
+                  <td data-label="Excursion">Firefly Flyer</td>
+                  <td data-label="Days">Fridays (Jun–Aug)</td>
+                  <td data-label="Departs">7:30 pm</td>
+                  <td data-label="Adults">$24</td>
+                  <td data-label="Children (2–12)">$16</td>
+                </tr>
+                <tr>
+                  <td data-label="Excursion">Centennial Steam Special</td>
+                  <td data-label="Days">July 4 weekend</td>
+                  <td data-label="Departs">10:00 · 1:00 · 4:00</td>
+                  <td data-label="Adults">$26</td>
+                  <td data-label="Children (2–12)">$18</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">
+            Children under 2 ride free on a lap. Every trip runs rain or shine.
+          </p>
+
+          <div class="btn-row">
+            <a class="btn" href="#visit">Reserve by Telephone</a>
+            <a class="btn btn-outline" href="#visit">Find the Depot</a>
+          </div>
+        </section> -->
+
+        <!-- ===== Sponsor a Spike ===== -->
+        <section class="section section-ruled" id="spike">
+          <div class="spike-grid">
+            <figure class="photo-frame spike-art">
+              <img
+                src="images/rail-spikes-and-tie.jpg"
+                alt="Weathered rail spikes driven into an old wooden tie beside a rusted rail on the line"
+                width="1800"
+                height="1200"
+              />
+            </figure>
+            <div class="spike-copy">
+              <p class="eyebrow">Be a part of railroad history</p>
+              <h2>Sponsor a Spike</h2>
+              <!-- <div class="ornament left" aria-hidden="true">❦</div> -->
+              <p>
+                A century of steam is hard on the track. Donate
+                <strong>$25</strong> and we'll drive a new spike into the line
+                in your honor, enter your name in the Depot Ledger, and mail you
+                a certificate.
+              </p>
+              <p>
+                Sponsor a whole tie for <strong>$100</strong> and your family
+                name joins the brass plaque on Platform&nbsp;1.
+              </p>
+              <a class="btn spike" href="spike.html">Sponsor a Spike</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== Volunteers ===== -->
+        <section class="section" id="volunteer">
+          <p class="eyebrow">No engine runs alone</p>
+          <h2>This Railway Runs on Volunteers</h2>
+          <!-- <div class="ornament" aria-hidden="true">❦</div> -->
+          <p class="section-lede">
+            Nobody at the HC&amp;N gets a paycheck — just a timetable, depot
+            coffee, and the best seat in the valley. No experience needed; we'll
+            teach you the rest.
+          </p>
+          <p class="roles">
+            Engine Crew <br />
+            Ticket Punchers<br />
+            Costumed Characters<br />
+            Track Gang<br />
+            Depot Storytellers<br />Lemonade Brigade
+          </p>
+          <div class="btn-row">
+            <a class="btn" href="#visit">Join the Crew</a>
+          </div>
+        </section>
+
+        <!-- ===== Visit ===== -->
+        <section class="section section-ruled" id="visit">
+          <p class="eyebrow">Plan your day</p>
+          <h2>Find the Depot</h2>
+          <!-- <div class="ornament" aria-hidden="true">❦</div> -->
+          <div class="visit-grid">
+            <div class="visit-col">
+              <h3>Hollow Creek Depot</h3>
+              <address>18 Depot Lane<br />Hollow Creek, Missouri</address>
+              <p>
+                <a href="tel:+15550147326">(555) 014-7326</a><br /><a
+                  href="mailto:allaboard@hcnrailway.example"
+                  >allaboard@hcnrailway.example</a
+                >
+              </p>
+              <p class="visit-note">
+                The ticket window opens one hour before each departure.
+              </p>
+            </div>
+            <div class="visit-col">
+              <h3>Good to Know</h3>
+              <ul class="visit-list">
+                <li>Free parking in the meadow beside the water tower</li>
+                <li>All coaches are stroller- and wheelchair-friendly</li>
+                <li>Well-behaved dogs ride free (bandana provided)</li>
+                <li>Picnics welcome on the depot lawn</li>
+                <li>This isn't a real place. It's a portfolio project.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ===== Footer colophon ===== -->
+      <footer class="footer">
+        <div class="footer-rail" aria-hidden="true"></div>
+        <p class="footer-brand">Hollow Creek &amp; Northern Railway</p>
+        <p>
+          A 501(c)(3) volunteer heritage railway ✦ Southeast Missouri ✦
+          Established 1926
+        </p>
+        <p>
+          18 Depot Lane, Hollow Creek, Missouri ✦
+          <a href="tel:+15550147326">(555) 014-7326</a> ✦
+          <a href="mailto:allaboard@hcnrailway.example"
+            >allaboard@hcnrailway.example</a
+          >
+        </p>
+        <p class="footer-copy">
+          © 2026 Hollow Creek &amp; Northern Railway · Smiles by the mile since
+          1926 · A fictional demonstration website
+        </p>
+      </footer>
+    </div>
+
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

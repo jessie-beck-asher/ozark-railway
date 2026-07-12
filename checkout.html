@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout — Hollow Creek &amp; Northern Railway</title>
+    <meta
+      name="description"
+      content="Complete your ticket and sponsorship order at the Hollow Creek & Northern Railway."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rye&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23600505'/><text x='50' y='66' font-size='46' text-anchor='middle' fill='%23f6efe2' font-family='Georgia'>HC</text></svg>"
+    />
+  </head>
+  <body class="product-page">
+    <div class="sheet">
+      <!-- ===== Back to the way-bill ===== -->
+      <a class="back-link" href="cart.html">
+        <svg
+          viewBox="0 0 96 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <!-- arrow pointing back -->
+          <g
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            fill="none"
+          >
+            <!-- shaft -->
+            <line x1="14" y1="12" x2="88" y2="12" />
+            <!-- arrowhead -->
+            <path d="M20 3 L4 12 L20 21 L15 12 Z" fill="currentColor" />
+          </g>
+        </svg>
+        Back to Your Cart
+      </a>
+
+      <main>
+        <!-- ===== The ticket window ===== -->
+        <section class="section product">
+          <p class="eyebrow">The ticket window</p>
+          <h1 class="product-title">Checkout</h1>
+
+          <!-- Filled cart: summary + passenger form -->
+          <div id="checkout-filled" hidden>
+            <p class="section-lede">
+              Hand your particulars through the window and the agent will
+              punch your order. Every field wants an answer.
+            </p>
+
+            <!-- Order summary -->
+            <div class="fare-rows checkout-summary" id="checkout-summary">
+              <!-- summary rows drawn from the cart by checkout-page.js -->
+            </div>
+
+            <form class="checkout-form" id="checkout-form" novalidate>
+              <!-- Who's riding -->
+              <fieldset class="checkout-set">
+                <legend>Passenger</legend>
+                <div class="form-field">
+                  <label for="co-name">Full Name</label>
+                  <input id="co-name" name="name" type="text" maxlength="120" autocomplete="name" />
+                  <p class="field-error" hidden></p>
+                </div>
+                <div class="form-field">
+                  <label for="co-email">Email — tickets ride the wires to this address</label>
+                  <input id="co-email" name="email" type="email" maxlength="120" autocomplete="email" />
+                  <p class="field-error" hidden></p>
+                </div>
+              </fieldset>
+
+              <!-- Where the paper mail goes -->
+              <fieldset class="checkout-set">
+                <legend>Mailing Address</legend>
+                <div class="form-field">
+                  <label for="co-street">Street Address</label>
+                  <input id="co-street" name="street" type="text" maxlength="120" autocomplete="street-address" />
+                  <p class="field-error" hidden></p>
+                </div>
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="co-city">City</label>
+                    <input id="co-city" name="city" type="text" maxlength="80" autocomplete="address-level2" />
+                    <p class="field-error" hidden></p>
+                  </div>
+                  <div class="form-field">
+                    <label for="co-state">State</label>
+                    <input id="co-state" name="state" type="text" maxlength="40" autocomplete="address-level1" />
+                    <p class="field-error" hidden></p>
+                  </div>
+                  <div class="form-field">
+                    <label for="co-zip">ZIP</label>
+                    <input id="co-zip" name="zip" type="text" maxlength="12" inputmode="numeric" autocomplete="postal-code" />
+                    <p class="field-error" hidden></p>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Names to letter on sponsored ties; drawn from the cart -->
+              <fieldset class="checkout-set" id="tie-set" hidden>
+                <legend>Tie Dedications</legend>
+                <p class="checkout-set-note">
+                  Every $100 tie carries a name, hand-lettered by the track
+                  gang. Give each of your ties its own — no two alike.
+                </p>
+                <div id="tie-fields"></div>
+              </fieldset>
+
+              <!-- Pretend payment -->
+              <fieldset class="checkout-set">
+                <legend>Payment</legend>
+                <p class="fake-notice">
+                  ✦ Pretend payment only ✦ This is a fictional demonstration
+                  site — no real payment is taken and nothing is charged.
+                  Make up any card numbers you please.
+                </p>
+                <div class="form-field">
+                  <label for="co-card">Card Number (any made-up digits)</label>
+                  <input id="co-card" name="card" type="text" maxlength="25" inputmode="numeric" placeholder="0000 0000 0000 0000" autocomplete="off" />
+                  <p class="field-error" hidden></p>
+                </div>
+                <div class="form-row form-row-pair">
+                  <div class="form-field">
+                    <label for="co-exp">Expiration (anything)</label>
+                    <input id="co-exp" name="exp" type="text" maxlength="10" placeholder="13/99" autocomplete="off" />
+                    <p class="field-error" hidden></p>
+                  </div>
+                  <div class="form-field">
+                    <label for="co-cvv">CVV (invent one)</label>
+                    <input id="co-cvv" name="cvv" type="text" maxlength="6" inputmode="numeric" placeholder="000" autocomplete="off" />
+                    <p class="field-error" hidden></p>
+                  </div>
+                </div>
+              </fieldset>
+
+              <p class="fare-notice" id="checkout-notice" role="alert"></p>
+              <button class="btn" type="submit">Checkout</button>
+            </form>
+          </div>
+
+          <!-- Empty cart: nothing to buy -->
+          <div id="checkout-empty" hidden>
+            <p class="section-lede">
+              The ticket window is open, but your cart rolled up empty.
+              Round up some tickets first.
+            </p>
+            <div class="btn-row cart-empty-actions">
+              <a class="btn" href="index.html#excursions">Browse Excursions</a>
+              <a class="btn btn-outline" href="spike.html">Sponsor a Spike</a>
+            </div>
+          </div>
+
+          <!-- Order confirmation -->
+          <div id="checkout-done" hidden>
+            <p class="section-lede" id="done-thanks"></p>
+            <p class="order-label">Order Number</p>
+            <p><span class="order-no" id="done-order"></span></p>
+            <p id="done-email"></p>
+            <p class="fare-fineprint" id="done-ties" hidden></p>
+            <p class="fare-fineprint">
+              No card was charged and no mail was sent — this railway runs
+              entirely on imagination.
+            </p>
+            <div class="btn-row">
+              <a class="btn" href="index.html">Back to the Depot</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ===== Footer colophon ===== -->
+      <footer class="footer">
+        <div class="footer-rail" aria-hidden="true"></div>
+        <p class="footer-brand">Hollow Creek &amp; Northern Railway</p>
+        <p>
+          A 501(c)(3) volunteer heritage railway ✦ Southeast Missouri ✦
+          Established 1926
+        </p>
+        <p class="footer-copy">
+          © 2026 Hollow Creek &amp; Northern Railway · Smiles by the mile since
+          1926 · A fictional demonstration website
+        </p>
+      </footer>
+    </div>
+
+    <script src="cart.js"></script>
+    <script src="checkout-page.js"></script>
+  </body>
+</html>
